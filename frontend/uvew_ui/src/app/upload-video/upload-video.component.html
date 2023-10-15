@@ -1,0 +1,56 @@
+<!-- <div class="center">
+    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" >
+        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+          Optional custom content that replaces the the entire default content.
+          <button type="button" (click)="openFileSelector()">Browse Files</button>
+        </ng-template>
+    </ngx-file-drop>
+    <div class="upload-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody class="upload-name-style">
+                <tr *ngFor="let item of files; let i=index">
+                    <td><strong>{{ item.relativePath }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button mat-raised-button color="primary" (click)="uploadVideo()">Upload</button>
+</div> -->
+
+<body class="bg-gray-100 font-sans">
+    <div class="min-h-screen flex flex-col items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+            <h1 class="text-3xl font-semibold mb-6 text-blue-500">Upload Your Video</h1>
+            <div class="space-y-4">
+                <label for="video" class="block text-gray-600 font-medium">Choose a video file:</label>
+                <div class="relative rounded-md border-dashed border-2 border-gray-300 p-4 cursor-pointer">
+                   
+                    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" >
+                        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                          <button type="button" (click)="openFileSelector()">Browse Files</button>
+                        </ng-template>
+                    </ngx-file-drop>
+                    
+                    <div class="text-center">
+                        <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <p class="mt-1 text-sm text-gray-600">Drag and drop or click to select a file</p>
+                    </div>
+                </div>
+                <div id="preview" class="hidden mt-4">
+                    <video controls class="w-full rounded-md"></video>
+                </div>
+                <div class="flex justify-center">
+                    <button (click)="uploadVideo()" id="upload-button" class="bg-blue-500 text-white py-2 px-4 rounded-md mt-4 hover:bg-blue-600 transition">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

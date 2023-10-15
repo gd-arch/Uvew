@@ -1,0 +1,33 @@
+<div class="p-4 mx-auto max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold mb-4">Upload a New Video</h2>
+    <form [formGroup]="videoDetailsForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+        <input formControlName="title" type="text" id="title" name="title" class="w-full p-2 border border-gray-300 rounded">
+      </div>
+      <div class="mb-4">
+        <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+        <textarea formControlName="description" id="description" name="description" class="w-full p-2 border border-gray-300 rounded"></textarea>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2">Video Status</label>
+        <label class="inline-flex items-center">
+          <input formControlName="videoStatus" type="radio" name="videoStatus" value="public" class="form-radio text-blue-600" checked>
+          <span class="ml-2">Public</span>
+        </label>
+        <label class="inline-flex items-center ml-6">
+          <input formControlName="videoStatus" type="radio" name="videoStatus" value="private" class="form-radio text-blue-600">
+          <span class="ml-2">Private</span>
+        </label>
+      </div>
+      <div class="mb-4">
+       <!-- <app-tags [form]="$any(videoDetailsForm).get('tags')| formControl"></app-tags> -->
+      </div>
+      <div class="mb-4">
+        <label for="thumbnail" class="block text-gray-700 text-sm font-bold mb-2">Thumbnail</label>
+        <input type="file" id="thumbnail" name="thumbnail" accept="image/*" class="w-full p-2 border border-gray-300 rounded">
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Upload</button>
+    </form>
+  </div>
+  
