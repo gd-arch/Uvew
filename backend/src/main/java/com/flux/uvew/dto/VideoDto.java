@@ -2,9 +2,8 @@ package com.flux.uvew.dto;
 
 import com.flux.uvew.model.VideoStatus;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-
 import java.util.Set;
+
 @Data
 public class VideoDto {
     private String id;
