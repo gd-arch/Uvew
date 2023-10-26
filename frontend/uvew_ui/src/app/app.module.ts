@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { TagsComponent } from './tags/tags.component';
 import { FormControlPipe } from './pipes/custom-pipe/form-control.pipe';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,9 @@ import { FormControlPipe } from './pipes/custom-pipe/form-control.pipe';
         NgxFileDropModule,
         HttpClientModule,
         ReactiveFormsModule,
-        TagsComponent
+        TagsComponent,
+        MatProgressBarModule
+        
     ]
 })
 export class AppModule { }

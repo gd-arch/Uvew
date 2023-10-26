@@ -50,6 +50,8 @@
                 <div class="flex justify-center">
                     <button (click)="uploadVideo()" id="upload-button" class="bg-blue-500 text-white py-2 px-4 rounded-md mt-4 hover:bg-blue-600 transition">Upload</button>
                 </div>
+                <mat-progress-bar mode="indeterminate"  *ngIf="isUploading"></mat-progress-bar>
+
             </div>
         </div>
     </div>

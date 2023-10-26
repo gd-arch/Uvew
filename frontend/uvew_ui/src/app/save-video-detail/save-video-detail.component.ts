@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup,FormBuilder,Validators, FormControl } from '@angular/forms';
 import { VideoService } from '../video.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-save-video-detail',
   templateUrl: './save-video-detail.component.html',
@@ -8,7 +9,7 @@ import { VideoService } from '../video.service';
 })
 export class SaveVideoDetailComponent {
   public videoDetailsForm !:FormGroup;
-  constructor(private formBuilder: FormBuilder,private videoService:VideoService) {}
+  constructor(private formBuilder: FormBuilder,private videoService:VideoService,private activateRoute:ActivatedRoute) {}
    ngOnInit(): void {
     this.videoDetailsForm=this.formBuilder.group({
       title:['',[Validators.required]],
@@ -20,14 +21,16 @@ export class SaveVideoDetailComponent {
     })}
 onSubmit(){
   console.log(this.videoDetailsForm.value);
+  let videoDetails = this.videoDetailsForm.value;
+  videoDetails.id = 
   this.videoService.updateVideo(this.videoDetailsForm.value)
   .subscribe({
     next:(res)=>{
-      alert("student added successfully");
+      alert("Video Details added successfully");
       this.videoDetailsForm.reset;
     },
     error:()=>{
-      alert("error while updating video");
+      alert("error while updating video details");
     }
   })
 }
