@@ -26,5 +26,4 @@ public class Video {
     private String thumbnailUrl;
     private String videoUrl;
     private List<Comment> commentList;
-
 }
