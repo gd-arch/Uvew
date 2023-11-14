@@ -45,12 +45,12 @@ public class VideoService {
         return modelMapper.map(updatedVideo, VideoDto.class);
     }
 
-    public String uploadThumbnail(MultipartFile file,String id) throws IOException {
+    public UploadThumbnailResponseDto uploadThumbnail(MultipartFile file,String id) throws IOException {
         Video video = findVideoById(id);
         String thumbnailUrl = s3Service.uploadFile(file);
         video.setThumbnailUrl(thumbnailUrl);
         Video savedVideo = videoRepository.save(video);
-        return savedVideo.getThumbnailUrl();
+        return modelMapper.map(savedVideo,UploadThumbnailResponseDto.class);
     }
 
     public Video findVideoById(String id) {

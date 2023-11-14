@@ -1,33 +1,57 @@
-<div class="p-4 mx-auto max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white rounded-lg shadow-md">
-    <h2 class="text-2xl font-semibold mb-4">Upload a New Video</h2>
+<div class="grid grid-cols-2 gap-4">
+
+<div class="p-4 max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold mb-4">Save Video Details</h2>
     <form [formGroup]="videoDetailsForm" (ngSubmit)="onSubmit()">
       <div class="mb-4">
         <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
-        <input formControlName="title" type="text" id="title" name="title" class="w-full p-2 border border-gray-300 rounded">
+        <input formControlName="title" required type="text" id="title" name="title" class="w-full p-2 border border-gray-300 rounded">
       </div>
       <div class="mb-4">
         <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
-        <textarea formControlName="description" id="description" name="description" class="w-full p-2 border border-gray-300 rounded"></textarea>
+        <textarea formControlName="description" required id="description" name="description" class="w-full p-2 border border-gray-300 rounded"></textarea>
       </div>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2">Video Status</label>
         <label class="inline-flex items-center">
-          <input formControlName="videoStatus" type="radio" name="videoStatus" value="public" class="form-radio text-blue-600" checked>
+          <input formControlName="videoStatus"  required type="radio"  name="videoStatus" value="PUBLIC" class="form-radio text-blue-600" checked>
           <span class="ml-2">Public</span>
         </label>
         <label class="inline-flex items-center ml-6">
-          <input formControlName="videoStatus" type="radio" name="videoStatus" value="private" class="form-radio text-blue-600">
+          <input formControlName="videoStatus" type="radio"  required name="videoStatus" value="PRIVATE" class="form-radio text-blue-600">
           <span class="ml-2">Private</span>
         </label>
       </div>
-      <div class="mb-4">
-       <!-- <app-tags [form]="$any(videoDetailsForm).get('tags')| formControl"></app-tags> -->
+      <div class="mb-4	">
+        <mat-form-field class="example-chip-list w-full" >
+          <mat-label>Tags</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Enter tags">
+            <mat-chip-row *ngFor="let tag of tags"
+                          (removed)="remove(tag)"
+                          [editable]="true"
+                          [aria-description]="'press enter to edit ' + tag">
+              {{tag}}
+              <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            <input formControlName="tags" placeholder="Add Video tags..."
+                   [matChipInputFor]="chipGrid"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)" required />
+          </mat-chip-grid>
+        </mat-form-field>
+
       </div>
       <div class="mb-4">
         <label for="thumbnail" class="block text-gray-700 text-sm font-bold mb-2">Thumbnail</label>
-        <input type="file" id="thumbnail" name="thumbnail" accept="image/*" class="w-full p-2 border border-gray-300 rounded">
+        <input type="file" (change)="onFileChanged($event)"  id="thumbnail" name="thumbnail" required  accept="image/*" class="w-full p-2 border border-gray-300 rounded">
+        <button  type="button" *ngIf=this.isImageSelected (click)="onUploadThumbnail()"  class="bg-red-400 text-white px-4 py-2 rounded hover:bg-red-500">Save</button>
+
       </div>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Upload</button>
+      <button type="submit" [disabled]="!videoDetailsForm.valid" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Upload</button>
     </form>
-  </div>
-  
+</div>
+<div><app-video-player [videoUrl]='this.videoUrl'/></div>
+</div>
