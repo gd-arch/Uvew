@@ -20,5 +20,12 @@ export class VideoService {
     //create a typescript response
     return this.http.put<any>(this.url+"/api/videos",data);
   }
+   public uploadThumbnail(file:any,videoId:string){
+    const formData = new FormData();
+    formData.append('file', file,file.name);
+    formData.append('id',videoId);
+    console.log(formData);  
+    return this.http.post<any>(this.url+"/api/videos/thumbnail",formData);
+  }
   
 }

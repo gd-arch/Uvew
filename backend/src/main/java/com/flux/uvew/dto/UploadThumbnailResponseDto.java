@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class UploadThumbnailResponseDto {
-    String title;
+    String videoId;
     String thumbnailUrl;
 }
