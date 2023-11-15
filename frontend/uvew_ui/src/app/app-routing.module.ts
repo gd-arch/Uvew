@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UploadVideoComponent } from './upload-video/upload-video.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { SaveVideoDetailComponent } from './save-video-detail/save-video-detail.component';
+import { UploadVideoComponent } from './components/upload/upload-video/upload-video.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { SaveVideoDetailComponent } from './components/upload/save-video-detail/save-video-detail.component';
 const routes: Routes = [
   { path: 'upload-video', component: UploadVideoComponent },
   { path: 'save-video-detail', component: SaveVideoDetailComponent },
