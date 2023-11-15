@@ -45,7 +45,7 @@ export class UploadVideoComponent {
           {
             next: (res: UploadVideoResponse) => {
               this.isUploading=false;
-              this.router.navigateByUrl("/save-video-detail/",{state:{videoId:res.id,videoUrl:res.videoUrl}});
+              this.router.navigateByUrl("/save-video-detail",{state:{videoId:res.id,videoUrl:res.videoUrl}});
           },
           error: (err: any) => {
             this.isUploading=false;
