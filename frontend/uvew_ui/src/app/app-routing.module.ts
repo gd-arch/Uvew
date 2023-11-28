@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UploadVideoComponent } from './components/upload/upload-video/upload-video.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { SaveVideoDetailComponent } from './components/upload/save-video-detail/save-video-detail.component';
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 import { VideoDetailComponent } from './components/home/video-detail/video-detail.component';
+import { UploadVideoComponent } from './components/upload/upload-video/upload-video.component';
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'upload-video', component: UploadVideoComponent },

@@ -39,11 +39,12 @@ public class VideoController {
         return ResponseEntity.unprocessableEntity().build();
     }
     @PostMapping("/thumbnail")
-    public String uploadThumbnail(@RequestParam("file") MultipartFile file,@RequestParam("id") String id) throws IOException {
+    public ResponseEntity<UploadThumbnailResponseDto> uploadThumbnail(@RequestParam("file") MultipartFile file,@RequestParam("id") String id) throws IOException {
         if(Objects.nonNull(file) && !file.isEmpty()) {
-            return videoService.uploadThumbnail(file,id);
+            UploadThumbnailResponseDto responseDto = videoService.uploadThumbnail(file,id);
+            return new ResponseEntity<>(responseDto,HttpStatus.CREATED);
         }
-        return "";
+        return ResponseEntity.unprocessableEntity().build();
     }
 
 

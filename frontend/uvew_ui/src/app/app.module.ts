@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,10 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgxFileDropModule } from 'ngx-file-drop';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SaveVideoDetailComponent } from './save-video-detail/save-video-detail.component';
-import { BodyComponent } from './body/body.component';
+import { SaveVideoDetailComponent } from './components/upload/save-video-detail/save-video-detail.component';
+import { BodyComponent } from './components/body/body.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -33,44 +32,45 @@ import { RouterModule } from '@angular/router';
 import { CommentSectionComponent } from './components/home/comment-section/comment-section.component';
 import { VideoElementComponent } from './components/home/video-element/video-element.component';
 
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    UploadVideoComponent,
-    HeaderComponent,
-    SidebarComponent,
-    PagenotfoundComponent,
-    SaveVideoDetailComponent,
-    BodyComponent,
-    VideoPlayerComponent,
-    DashboardComponent,
-    VideoCardComponent,
-    VideoDetailComponent,
-    CommentSectionComponent,
-    VideoElementComponent,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatChipsModule,
-    MatToolbarModule,
-    NgxFileDropModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatSnackBarModule,
-    VgCoreModule,
-    VgControlsModule,
-    VgOverlayPlayModule,
-    VgBufferingModule,
-    InfiniteScrollModule,
-    RouterModule,
-  ],
+    declarations: [
+      AppComponent,
+      UploadVideoComponent,
+      HeaderComponent,
+      SidebarComponent,
+      PagenotfoundComponent,
+      SaveVideoDetailComponent,
+      BodyComponent,
+      VideoPlayerComponent,
+      DashboardComponent,
+      VideoCardComponent,
+      VideoDetailComponent,
+      CommentSectionComponent,
+      VideoElementComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+      BrowserModule,
+      AppRoutingModule,
+      BrowserAnimationsModule,
+      MatButtonModule,
+      MatIconModule,
+      MatChipsModule,
+      MatToolbarModule,
+      NgxFileDropModule,
+      HttpClientModule,
+      ReactiveFormsModule,
+      MatProgressBarModule,
+      MatFormFieldModule,
+      MatSnackBarModule,
+      VgCoreModule,
+      VgControlsModule,
+      VgOverlayPlayModule,
+      VgBufferingModule,
+      InfiniteScrollModule,
+      RouterModule,
+    ]
 })
 export class AppModule {}
