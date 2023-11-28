@@ -32,7 +32,7 @@ export class VideoService {
     return this.http.get<VideoPageDto>(this.url+"/api/videos",{params: params});
   }
   getVideo(videoId: string): Observable<Video> {
-    const url = `${this.url}/api/videos/"${videoId}`;
+    const url = `${this.url}/api/videos/${videoId}`;
     return this.http.get<Video>(url);
   }
 
