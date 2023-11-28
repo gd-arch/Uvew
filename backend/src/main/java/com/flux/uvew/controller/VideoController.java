@@ -3,6 +3,7 @@ package com.flux.uvew.controller;
 import com.flux.uvew.dto.UploadThumbnailResponseDto;
 import com.flux.uvew.dto.UploadVideoResponse;
 import com.flux.uvew.dto.VideoDto;
+import com.flux.uvew.dto.VideoPageDto;
 import com.flux.uvew.service.VideoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,14 @@ import java.util.Objects;
 @CrossOrigin(origins = "http://localhost:4200")
 public class VideoController {
     private final VideoService videoService;
+    @GetMapping("/{videoId}")
+    public ResponseEntity<VideoDto> getVideo(@PathVariable String videoId){
+        return ResponseEntity.ok(videoService.getVideo(videoId));
+    }
     @GetMapping
-    public List<VideoDto> getAllVideos(){
-        return videoService.getAllVideos();
+    public ResponseEntity<VideoPageDto> getVideos(@RequestParam(defaultValue = "0",required = true)int pageNo,
+                                                  @RequestParam(defaultValue = "10",required = true)int pageSize){
+        return ResponseEntity.ok(videoService.getVideosByPagination(pageNo,pageSize));
     }
     @PostMapping
     public ResponseEntity<UploadVideoResponse> uploadVideo(@RequestParam("file") MultipartFile file) throws IOException {

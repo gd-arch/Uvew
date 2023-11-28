@@ -1,0 +1,32 @@
+<a [routerLink]="['/video-details', video.id]">
+  <div class="max-w-sm w-full rounded-md overflow-hidden shadow-lg">
+    <div class="w-full flex flex-col">
+      <div class="relative">
+        <!-- Image Video -->
+        <img [src]="this.thumbnailSrc" class="sm:h-60 sm:w-70 lg:h-50 lg:w-65 object-cover"
+          (error)="onError('thumbnail')" />
+        <!-- Display Video Duration -->
+        <p class="absolute rounded-md bg-zinc-300 right-2 bottom-2 text-gray-600 text-xs px-1 py">
+          1:15
+        </p>
+      </div>
+
+      <!-- Video Details Section -->
+      <div class="flex flex-row m-2 px-2 py-1 gap-2">
+        <!-- Profile Picture -->
+        <img [src]="this.defaultUploadedBy" class="rounded-full max-h-10 max-w-10" (error)="onError('uploadedBy')" />
+        <!-- Description -->
+        <div class="w-full flex flex-col">
+          <div class="text-gray-600 text-sm font-semibold">
+            {{ this.video.title || "No Title" }}
+          </div>
+          <a class="text-gray-400 text-xs mt-1 hover:text-gray-600">{{this.video.userId || "Not available"}}</a>
+          <div class="text-gray-400 text-xs mt-1">
+            {{ this.video.likes || "0" }} views .
+            {{ this.video.videoCount || "0" }} years ago
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,11 @@
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="200" (scrolled)="onScroll()"
+    [fromRoot]="true">
+    <div class="flex items-center justify-center">
+        <div
+            class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6 lg:gap-y-4 max-w-6xl justify-items-center pb-8">
+            <app-video-card class="max-w-sm" *ngFor="let video of videos" [video]="video"></app-video-card>
+        </div>
+    </div>
+
+    <div *ngIf="isLoading">Loading...</div>
+</div>

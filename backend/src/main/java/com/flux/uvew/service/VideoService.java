@@ -4,15 +4,19 @@ import com.flux.uvew.Repository.VideoRepository;
 import com.flux.uvew.dto.UploadThumbnailResponseDto;
 import com.flux.uvew.dto.UploadVideoResponse;
 import com.flux.uvew.dto.VideoDto;
+import com.flux.uvew.dto.VideoPageDto;
 import com.flux.uvew.exceptions.ResourceNotFoundException;
 import com.flux.uvew.model.Video;
 import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.modelmapper.ModelMapper;
 
+import java.awt.print.Pageable;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -64,4 +68,21 @@ public class VideoService {
                 .collect(Collectors.toList());
     }
 
+    public VideoPageDto getVideosByPagination(int pageNo, int pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNo,pageSize);
+        Page page = videoRepository.findAll(pageRequest);
+        VideoPageDto videoPageDto =new VideoPageDto();
+        videoPageDto.setContent(page.getContent());
+        videoPageDto.setPageNumber(page.getNumber());
+        videoPageDto.setTotalPages(page.getTotalPages());
+        videoPageDto.setLastPage(page.isLast());
+        videoPageDto.setPageSize(page.getSize());
+        videoPageDto.setTotalElements(page.getTotalElements());
+        return videoPageDto;
+
+    }
+
+    public VideoDto getVideo(String id) {
+        return modelMapper.map(findVideoById(id),VideoDto.class);
+    }
 }

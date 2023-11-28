@@ -25,9 +25,9 @@ export const navbarData = [
         label: 'Pages'
     },
     {
-        routeLink: 'media',
+        routeLink: 'upload-video',
         icon: 'fal fa-camera',
-        label: 'Media'
+        label: 'Upload'
     },
     {
         routeLink: 'settings',

@@ -1,16 +1,18 @@
 package com.flux.uvew.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
 @Document(value = "Video")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Video {
@@ -26,5 +28,10 @@ public class Video {
     private String thumbnailUrl;
     private String videoUrl;
     private List<Comment> commentList;
+    private String description;
+    @CreatedDate
+    private LocalDateTime dateCreated;
+    @LastModifiedDate
+    private LocalDateTime dateModified;
 
 }
