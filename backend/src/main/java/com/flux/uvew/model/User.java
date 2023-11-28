@@ -20,8 +20,8 @@ public class User {
     private String lastName;
     private String fullName;
     private String email;
-    private Set<String> subsribedToUsers;
-    private Set<String> subsribers;
+    private Set<String> subscribedToUsers;
+    private Set<String> subscribers;
     private List<String> videoHistory;
     private List<String> likedVideos;
     private List<String> dislikedVideos;
