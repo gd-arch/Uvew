@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup,FormBuilder,Validators, FormControl } from '@angular/forms';
-import { VideoService } from '../video.service';
+import { VideoService } from '../../../services/video.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent} from '@angular/material/chips';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
-import { tagsRequiredValidator } from '../validators/tags-required-validator';
+import { tagsRequiredValidator } from './tags-required-validator';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ThumbnailResponse } from './ThumbnailResponse';
 import { VideoDto } from './VideoDetails';
@@ -96,7 +96,7 @@ export class SaveVideoDetailComponent {
     this.videoService.updateVideo(videoDetails)
     .subscribe({
       next:(res)=>{
-        
+
         this.snackBar.open('Video Details saved successfully', 'Ok')
         this.videoDetailsForm.reset;
       },
@@ -107,8 +107,8 @@ export class SaveVideoDetailComponent {
         })
       }
     })
-    
-  
+
+
 }
 
 }

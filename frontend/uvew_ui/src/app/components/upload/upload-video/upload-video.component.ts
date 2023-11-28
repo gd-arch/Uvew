@@ -1,7 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-import { VideoService } from '../video.service';
+import { VideoService } from '../../../services/video.service';
 import { Router } from '@angular/router';
 import { UploadVideoResponse } from './UploadVideoResponse';
 
@@ -9,7 +9,7 @@ import { UploadVideoResponse } from './UploadVideoResponse';
   selector: 'app-upload-video',
   templateUrl: './upload-video.component.html',
   styleUrls: ['./upload-video.component.css'],
-  
+
 })
 export class UploadVideoComponent {
   constructor(private videoService: VideoService, private router: Router){}
@@ -38,23 +38,23 @@ export class UploadVideoComponent {
   }
   uploadVideo(){
     if(this.file!=undefined){
-      
+
       if(this.fileUploaded)
       { this.isUploading=true;
          this.videoService.uploadVideo(this.file).subscribe(
           {
             next: (res: UploadVideoResponse) => {
               this.isUploading=false;
-              this.router.navigateByUrl("/save-video-detail/",{state:{videoId:res.id,videoUrl:res.videoUrl}});
+              this.router.navigateByUrl("/save-video-detail",{state:{videoId:res.id,videoUrl:res.videoUrl}});
           },
-          error: (err: any) => { 
+          error: (err: any) => {
             this.isUploading=false;
-            alert("error while Uploading the files");   
+            alert("error while Uploading the files");
           }
         }
       );
     }
-      
+
     }
   }
 
