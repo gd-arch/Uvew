@@ -5,13 +5,20 @@ import { SaveVideoDetailComponent } from './components/upload/save-video-detail/
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
 import { VideoDetailComponent } from './components/home/video-detail/video-detail.component';
 import { UploadVideoComponent } from './components/upload/upload-video/upload-video.component';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'upload-video', component: UploadVideoComponent },
-  { path: 'save-video-detail', component: SaveVideoDetailComponent },
-  { path: 'video-details/:videoId', component: VideoDetailComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // redirect to `first-component`
+  { path: 'dashboard', component: DashboardComponent ,canActivate: [AuthGuard]},
+  { path: 'upload-video', component: UploadVideoComponent ,canActivate: [AuthGuard]},
+  { path: 'save-video-detail', component: SaveVideoDetailComponent ,canActivate: [AuthGuard]},
+  { path: 'video-details/:videoId', component: VideoDetailComponent,canActivate: [AuthGuard] },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, 
+  {
+    path: 'access-denied',
+    component: AccessDeniedComponent,
+  },// redirect to `first-component`
   { path: '**', component: PagenotfoundComponent }, // Wildcard route for a 404 page
+  
 ];
 
 @NgModule({

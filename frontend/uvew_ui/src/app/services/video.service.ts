@@ -31,7 +31,7 @@ export class VideoService {
     let params = new HttpParams().set("pageNo",pageNo).set("pageSize", pageSize);
     return this.http.get<VideoPageDto>(this.url+"/api/videos",{params: params});
   }
-  getVideo(videoId: string): Observable<Video> {
+  public getVideo(videoId: string): Observable<Video> {
     const url = `${this.url}/api/videos/${videoId}`;
     return this.http.get<Video>(url);
   }

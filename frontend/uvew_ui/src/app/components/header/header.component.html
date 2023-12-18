@@ -1,13 +1,61 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>UVEW</span>
-      <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-      </button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  
+<header class="bg-white border-b border-gray-300">
+  <div class="container mx-auto flex items-center justify-between p-4">
+
+      <!-- Logo -->
+      <div class="flex items-center ml-2">
+        <a href="#" class="-m-1.5 p-1.5">
+          <img class="h-8 w-auto" src="https://i.imgur.com/xhIkmaS.png" alt="">
+        </a>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="flex-grow mx-4">
+          <div class="relative">
+              <input type="text"
+                  class="w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                  placeholder="Search">
+              <span class="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <button
+                      class="text-gray-600 focus:outline-none focus:text-blue-500 hover:text-blue-500">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-gray-600" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                      </svg>
+
+                      
+                  </button>
+              </span>
+          </div>
+      </div>
+
+      <!-- Icons and User -->
+      <!-- *ngIf="isAuthenticated; else notAuth" -->
+      <div  class="flex items-center">
+          <button
+              class="mr-4 text-gray-600 hover:text-blue-500 focus:outline-none focus:text-blue-500">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+          </button>
+          <div class="flex items-center">
+              <img src="/assets/images/user.jpg" alt="User Avatar"
+                  class="w-8 h-8 object-cover rounded-full">
+              <ul class="m-2" *ngIf="getUsername()">
+                <li>{{ getUsername() }}</li>
+              </ul>
+          </div>
+          <button (click)="logout()" class="ml-3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-red-800">
+            Signout
+          </button> 
+      </div>
+      <!-- <ng-template class="flex items-center" >
+        <button (click)="login()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+          Log In
+        </button> 
+      </ng-template> -->
+
+  </div>
+</header>
