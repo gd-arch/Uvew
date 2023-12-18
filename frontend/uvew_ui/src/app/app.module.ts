@@ -31,6 +31,10 @@ import { VideoDetailComponent } from './components/home/video-detail/video-detai
 import { RouterModule } from '@angular/router';
 import { CommentSectionComponent } from './components/home/comment-section/comment-section.component';
 import { VideoElementComponent } from './components/home/video-element/video-element.component';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializer } from '../utils/app-init';
+import { APP_INITIALIZER } from '@angular/core';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 
 @NgModule({
@@ -48,8 +52,16 @@ import { VideoElementComponent } from './components/home/video-element/video-ele
       VideoDetailComponent,
       CommentSectionComponent,
       VideoElementComponent,
+      AccessDeniedComponent,
     ],
-    providers: [],
+    providers: [
+      {
+        provide: APP_INITIALIZER,
+        useFactory: initializer,
+        deps: [KeycloakService],
+        multi: true,
+      },
+    ],
     bootstrap: [AppComponent],
     imports: [
       BrowserModule,
@@ -71,6 +83,7 @@ import { VideoElementComponent } from './components/home/video-element/video-ele
       VgBufferingModule,
       InfiniteScrollModule,
       RouterModule,
+      KeycloakAngularModule
     ]
 })
 export class AppModule {}
