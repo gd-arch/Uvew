@@ -1,4 +1,4 @@
-package com.flux.uvew.Repository;
+package com.flux.uvew.repository;
 
 import com.flux.uvew.model.Video;
 import org.springframework.data.mongodb.repository.MongoRepository;
