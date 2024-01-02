@@ -35,6 +35,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializer } from '../utils/app-init';
 import { APP_INITIALIZER } from '@angular/core';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { CallbackComponent } from './components/util/callback/callback.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
       CommentSectionComponent,
       VideoElementComponent,
       AccessDeniedComponent,
+      CallbackComponent,
     ],
     providers: [
       {

@@ -30,6 +30,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             // </html>
             onLoad: 'login-required',
             checkLoginIframe: true,
+            redirectUri:window.location.origin+"/callback"
             // silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html',
           },
           // By default the keycloak-angular library add Authorization: Bearer TOKEN to all http requests
