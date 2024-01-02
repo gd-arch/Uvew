@@ -1,6 +1,6 @@
 package com.flux.uvew.service;
 
-import com.flux.uvew.Repository.VideoRepository;
+import com.flux.uvew.repository.VideoRepository;
 import com.flux.uvew.dto.UploadThumbnailResponseDto;
 import com.flux.uvew.dto.UploadVideoResponse;
 import com.flux.uvew.dto.VideoDto;
