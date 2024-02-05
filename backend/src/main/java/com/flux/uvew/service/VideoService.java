@@ -1,28 +1,27 @@
 package com.flux.uvew.service;
 
-import com.flux.uvew.exceptions.UserNotLoggedInException;
-import com.flux.uvew.model.User;
-import com.flux.uvew.repository.VideoRepository;
 import com.flux.uvew.dto.UploadThumbnailDto;
 import com.flux.uvew.dto.UploadVideoDto;
 import com.flux.uvew.dto.VideoDto;
 import com.flux.uvew.dto.VideoPageDto;
 import com.flux.uvew.exceptions.ResourceNotFoundException;
+import com.flux.uvew.exceptions.UserNotLoggedInException;
+import com.flux.uvew.model.User;
 import com.flux.uvew.model.Video;
+import com.flux.uvew.repository.VideoRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
+import org.modelmapper.ModelMapper;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.index.TextIndexDefinition;
 import org.springframework.data.mongodb.core.query.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.modelmapper.ModelMapper;
 
 import java.io.IOException;
 import java.util.*;
@@ -119,7 +118,7 @@ public class VideoService {
             List<Video> videos = mongoTemplate.find(query, Video.class);
             long totalCount = mongoTemplate.count(query, Video.class);
 
-            Page<Video> page = new PageImpl<>(videos, pageRequest, totalCount);
+            Page<Video> page = new PageImpl<Video>(videos, pageRequest, totalCount);
 
             return VideoPageDto.builder()
                     .content(page.getContent()

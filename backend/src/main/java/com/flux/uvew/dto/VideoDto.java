@@ -1,6 +1,6 @@
 package com.flux.uvew.dto;
 
-VideoStatus;
+import com.flux.uvew.model.VideoStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
