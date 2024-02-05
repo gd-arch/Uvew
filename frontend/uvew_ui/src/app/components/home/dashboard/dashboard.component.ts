@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoService } from 'src/app/services/video.service';
 import { Video } from '../video-card/Video';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,22 +14,27 @@ export class DashboardComponent implements OnInit {
   currentPage: number = 0;
   itemsPerPage: number = 12;
   totalPages: number = 0;
-  constructor(private videoService: VideoService) {}
+  searchTerm$ !: Observable<string>;
+
+  constructor(private videoService: VideoService,private dataSharingService:DataSharingService) {}
 
   ngOnInit(): void {
+    this.searchTerm$ = this.dataSharingService.getSearchTerm();
     this.loadVideos();
   }
 
   loadVideos(): void {
     this.toggleLoading();
-    this.videoService.getVideos(this.currentPage, this.itemsPerPage).subscribe({
+    this.searchTerm$.subscribe(searchTerm => {
+    this.videoService.getVideos(this.currentPage, this.itemsPerPage,searchTerm).subscribe({
       next: (response) => {
         this.videos = response.content;
         this.totalPages = response.totalPages;
+        this.toggleLoading();
       },
-      error: (err) => console.log(err),
-      complete: () => this.toggleLoading(),
+      error: (err) => console.log(err)
     });
+  })
   }
   toggleLoading(): void {
     this.isLoading = !this.isLoading;
@@ -53,4 +60,5 @@ export class DashboardComponent implements OnInit {
     this.currentPage++;
     this.appendData();
   };
+  
 }

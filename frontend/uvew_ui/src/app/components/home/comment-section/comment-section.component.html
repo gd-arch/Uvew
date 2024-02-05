@@ -3,9 +3,6 @@
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
             Latest Comments
         </h5>
-        <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
-            View all
-        </a>
     </div>
     <div class="flow-root">
         <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -18,91 +15,37 @@
                         <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
                             <div class="mb-4">
                                 <textarea id="comment" placeholder="Add a comment..." formControlName="comment" rows="1"
-                                    class="mt-1 p-2 w-full border rounded-md"></textarea>
+                                    class="mt-1 p-2 w-full border rounded-md">
+                                </textarea>
                             </div>
                             <div class="relative">
-                                <button type="submit"
+                                <button type="submit" [disabled]="!commentForm.valid"
                                     class="left-0 bg-blue-500 text-white px-4 py-2 rounded-md">Comment</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </li>
-            <li class="py-3 sm:py-4">
+            <li *ngFor="let comment of comments" class="py-3 sm:py-4">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
                         <img class="w-13 h-12 rounded-full" src="/assets/images/user.jpg" alt="Neil image" />
                     </div>
                     <div class="flex-1 min-w-0 ms-4">
                         <div class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Neil Sims
+                            <span>{{ comment.authorName ? comment.authorName : 'Not available' }}</span>
                         </div>
                         <div class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            This is a demo comment from a demo user
+                            <span>{{ comment.text ? comment.text : 'Not available' }}</span>
                         </div>
                     </div>
                 </div>
             </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <img class="w-13 h-12 rounded-full" src="/assets/images/user.jpg" alt="Bonnie image" />
-                    </div>
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Bonnie Green
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            This is a demo comment from a demo user
-                        </p>
-                    </div>
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <img class="w-13 h-12 rounded-full" src="/assets/images/user.jpg" alt="Michael image" />
-                    </div>
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Michael Gough
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            This is a demo comment from a demo user
-                        </p>
-                    </div>
-                </div>
-            </li>
-            <li class="py-3 sm:py-4">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <img class="w-13 h-12 rounded-full" src="/assets/images/user.jpg" alt="Lana image" />
-                    </div>
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Lana Byrd
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            This is a demo comment from a demo user
-                        </p>
-                    </div>
-                </div>
-            </li>
-            <li class="pt-3 pb-0 sm:pt-4">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <img class="w-13 h-12 rounded-full" src="/assets/images/user.jpg" alt="Thomas image" />
-                    </div>
-                    <div class="flex-1 min-w-0 ms-4">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                            Thomes Lean
-                        </p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                            This is a demo comment from a demo user
-                        </p>
-                    </div>
-                </div>
-            </li>
+        
         </ul>
+        <div class="flex justify-center">
+            <button *ngIf=!this.isLastPage (click)="loadMoreComments()"   class="bg-red-500 text-white px-4 py-2 rounded-full">Load more comments</button>
+        </div>
+          
     </div>
 </div>
