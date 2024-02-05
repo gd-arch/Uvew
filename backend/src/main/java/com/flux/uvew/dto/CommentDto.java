@@ -6,8 +6,6 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 public class CommentDto {
@@ -24,12 +22,13 @@ public class CommentDto {
     @NotBlank(message = "Author ID is required")
     private String authorId;
 
+    @NotBlank(message = "Author Name is required")
+    private String authorName;
+
     @Min(value = 0, message = "Like count cannot be negative")
     private Integer likeCount;
 
     @Min(value = 0, message = "Dislike count cannot be negative")
     private Integer dislikeCount;
-
-    private LocalDateTime dateModified;
 
 }

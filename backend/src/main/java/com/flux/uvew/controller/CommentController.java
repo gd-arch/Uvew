@@ -1,8 +1,9 @@
 package com.flux.uvew.controller;
 
+import com.flux.uvew.dto.CommentDataDto;
 import com.flux.uvew.dto.CommentDto;
+import com.flux.uvew.dto.CommentPageDto;
 import com.flux.uvew.service.CommentService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/comments")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CommentController {
 
     private final CommentService commentService;
@@ -20,8 +22,8 @@ public class CommentController {
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
-
-    @GetMapping
+//    @PreAuthorize("admin")
+    @GetMapping("/all")
     public ResponseEntity<List<CommentDto>> getAllComments() {
         return ResponseEntity.ok(commentService.getAllComments());
     }
@@ -39,7 +41,7 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<CommentDto> saveComment(@Valid @RequestBody CommentDto commentDto) {
+    public ResponseEntity<CommentDto> saveComment( @RequestBody CommentDataDto commentDto) {
         CommentDto savedComment = commentService.saveComment(commentDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedComment);
     }
@@ -48,6 +50,12 @@ public class CommentController {
     public ResponseEntity<Void> deleteComment(@PathVariable String commentId) {
         commentService.deleteComment(commentId);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping
+    public ResponseEntity<CommentPageDto> getCommentsByPaginationForVideo(@RequestParam(required = true)String videoId,
+                                                    @RequestParam(defaultValue = "0",required = true)int pageNo,
+                                                    @RequestParam(defaultValue = "10",required = true)int pageSize){
+        return ResponseEntity.ok(commentService.getCommentsByPaginationForVideo(videoId,pageNo,pageSize));
     }
 }
 

@@ -35,6 +35,10 @@ public class Comment {
     @NotBlank(message = "Author ID is required")
     private String authorId;
 
+    @Field("author_name")
+    @NotBlank(message = "Author Name is required")
+    private String authorName;
+
     @Min(0)
     private Integer likeCount = 0;
 
