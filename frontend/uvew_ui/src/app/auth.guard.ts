@@ -40,7 +40,7 @@ export class AuthGuard extends KeycloakAuthGuard {
     if (requiredRoles.every((role) => this.roles.includes(role))) {
       return true;
     } else {
-      // redirect to error page if the user doesn't have the nessecairy  role to access
+      // redirect to error page if the user doesn't have the necessary  role to access
       this.router.navigate(['access-denied']);
       return false;
     }

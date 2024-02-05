@@ -4,17 +4,16 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class VideoPageDto {
-    private List<VideoDto> content;
+public class CommentPageDto {
+    private List<CommentDto> content;
+    private int totalPages;
     private int pageNumber;
-    private  int pageSize;
-    private  long totalElements;
-    private  int totalPages;
+    private int pageSize;
+    private long totalElements;
     private boolean isLastPage;
-
 }
