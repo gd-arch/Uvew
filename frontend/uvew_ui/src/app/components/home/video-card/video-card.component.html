@@ -20,10 +20,10 @@
           <div class="text-gray-600 text-sm font-semibold">
             {{ this.video.title || "No Title" }}
           </div>
-          <a class="text-gray-400 text-xs mt-1 hover:text-gray-600">{{this.video.userId || "Not available"}}</a>
+          <a class="text-gray-400 text-xs mt-1 hover:text-gray-600">{{this.video.authorName || "Not available"}}</a>
           <div class="text-gray-400 text-xs mt-1">
-            {{ this.video.likes || "0" }} views .
-            {{ this.video.videoCount || "0" }} years ago
+            {{ this.video.views || "0" }} views .
+            {{ convertToTimeElaspsed(this.video.dateCreated) || "0" }} 
           </div>
         </div>
       </div>
