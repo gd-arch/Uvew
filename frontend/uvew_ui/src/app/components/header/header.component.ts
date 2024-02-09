@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { debounceTime, distinct, distinctUntilChanged, filter, fromEvent, map, merge } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataSharingService } from 'src/app/services/data-sharing.service';
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit,AfterViewInit{
   
   isAuthenticated:boolean = false;
   @ViewChild('searchInput') searchInput !:ElementRef;
-  constructor(private authService:AuthService ,private dataSharingService:DataSharingService){}
+  constructor(private authService:AuthService ,private dataSharingService:DataSharingService,private router: Router){}
   ngAfterViewInit(): void {
       
     const searchEnter = fromEvent<any>(this.searchInput.nativeElement, 'keyup').pipe(
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit,AfterViewInit{
     );
     searchEnter.subscribe(response =>{
       console.log(response)
-      this.dataSharingService.setSearchTerm(response);
+      this.search(response);
     })
   }
   ngOnInit(): void {
@@ -44,4 +45,8 @@ export class HeaderComponent implements OnInit,AfterViewInit{
   public getUsername(){
       return this.authService.getUsername();
   } 
+  search(query:string){
+    this.router.navigateByUrl('/dashboard');
+    this.dataSharingService.setSearchTerm(query);
+  }
 }
