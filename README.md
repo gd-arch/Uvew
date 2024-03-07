@@ -36,8 +36,7 @@ Steps:
 Clone the Repository:
 
 Bash
-git clone https://github.com/your-username/youtube-clone.git
-Use code with caution.
+git clone https://github.com/your-username/Uvew.git
 Update Application Configuration:
 
 Backend (application.properties):
