@@ -4,7 +4,6 @@ import com.flux.uvew.dto.CommentDataDto;
 import com.flux.uvew.dto.CommentDto;
 import com.flux.uvew.dto.CommentPageDto;
 import com.flux.uvew.service.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,6 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @Autowired
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }
