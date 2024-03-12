@@ -12,13 +12,13 @@ const routes: Routes = [
   { path: 'upload-video', component: UploadVideoComponent ,canActivate: [AuthGuard]},
   { path: 'save-video-detail', component: SaveVideoDetailComponent ,canActivate: [AuthGuard]},
   { path: 'video-details/:videoId', component: VideoDetailComponent,canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, 
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: 'access-denied',
     component: AccessDeniedComponent,
   },// redirect to `first-component`
   { path: '**', component: PagenotfoundComponent }, // Wildcard route for a 404 page
-  
+
 ];
 
 @NgModule({

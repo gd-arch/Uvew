@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VideoRepository extends MongoRepository<Video, String> {
+    //ToDO: findAll active videos only
 }
 

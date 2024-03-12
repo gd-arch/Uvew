@@ -18,6 +18,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +33,8 @@ private String bucketName;
     @Override
     public String uploadFile(MultipartFile multipartFile) throws IOException {
         // convert multipart file  to a file
-        File file = new File(multipartFile.getOriginalFilename());
+        String originalFileName = multipartFile.getOriginalFilename()==null ? UUID.randomUUID().toString().substring(7):multipartFile.getOriginalFilename();
+        File file = new File(originalFileName);
         try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
             fileOutputStream.write(multipartFile.getBytes());
         }
@@ -65,7 +68,7 @@ private String bucketName;
         try (S3ObjectInputStream s3is = object.getObjectContent()) {
             try (FileOutputStream fileOutputStream = new FileOutputStream(fileName)) {
                 byte[] readBuf = new byte[1024];
-                int readLen = 0;
+                int readLen;
                 while ((readLen = s3is.read(readBuf)) > 0) {
                     fileOutputStream.write(readBuf, 0, readLen);
                 }
@@ -101,6 +104,6 @@ private String bucketName;
     }
 
     private String generateFileName(MultipartFile multiPart) {
-        return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
+        return new Date().getTime() + "-" + Objects.requireNonNull(multiPart.getOriginalFilename()).replace(" ", "_");
     }
 }
