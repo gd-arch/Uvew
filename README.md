@@ -1,4 +1,4 @@
-## YouTube Clone Application
+## Uvew - Video Streaming platform
 
 ## Project Description
 
@@ -55,7 +55,7 @@ Install dependencies: npm install (or yarn install)
 Start the development server: ng serve
 ## Contributing
 
-We welcome your contributions! Please refer to the CONTRIBUTING.md file for guidelines.
+We welcome your contributions!.
 
 ## Disclaimer
 
