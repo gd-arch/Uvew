@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { debounceTime, distinct, distinctUntilChanged, filter, fromEvent, map, merge } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +10,24 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.css'],
  
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit,AfterViewInit{
+
   
   isAuthenticated:boolean = false;
-  constructor(private authService:AuthService ){}
+  @ViewChild('searchInput') searchInput !:ElementRef;
+  constructor(private authService:AuthService ,private dataSharingService:DataSharingService,private router: Router){}
+  ngAfterViewInit(): void {
+      
+    const searchEnter = fromEvent<any>(this.searchInput.nativeElement, 'keyup').pipe(
+      filter(event => event.key === 'Enter' || event.keyCode === 13),
+      map(event => event.target.value),
+      debounceTime(0)
+    );
+    searchEnter.subscribe(response =>{
+      console.log(response)
+      this.search(response);
+    })
+  }
   ngOnInit(): void {
     this.updateIsAuthenticated();
     }
@@ -28,4 +45,8 @@ export class HeaderComponent implements OnInit{
   public getUsername(){
       return this.authService.getUsername();
   } 
+  search(query:string){
+    this.router.navigateByUrl('/dashboard');
+    this.dataSharingService.setSearchTerm(query);
+  }
 }

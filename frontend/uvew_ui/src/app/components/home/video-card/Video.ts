@@ -1,9 +1,11 @@
-type VideoStatus = 'draft' | 'published' | 'archived';
+type VideoStatus = 'PUBLIC' | 'PRIVATE' | 'UNLISTED';
 
 export interface Video {
+
     id:string;
     title: string ;
-    userId: string;
+    userSubId: string;
+    authorName: string;
     likes: number;
     dislikes: number;
     tags: string[];
@@ -13,4 +15,6 @@ export interface Video {
     videoUrl: string;
     commentList: Comment[];
     description:string;
+    views:number;
+    dateCreated:string;
 }

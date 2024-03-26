@@ -98,7 +98,9 @@ export class SaveVideoDetailComponent {
       next:(res)=>{
 
         this.snackBar.open('Video Details saved successfully', 'Ok')
-        this.videoDetailsForm.reset;
+        this.videoDetailsForm.reset();
+        this.router.navigateByUrl('/dashboard');
+
       },
       error:(err)=>{
         console.error(err);
