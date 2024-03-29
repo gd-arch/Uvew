@@ -55,7 +55,7 @@ Install dependencies: npm install (or yarn install)
 Start the development server: ng serve
 ## Contributing
 
-We welcome your contributions!.emo
+We welcome your contributions!
 
 ## Demo
 https://www.youtube.com/watch?v=WcKwqGclkhM
