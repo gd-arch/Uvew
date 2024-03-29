@@ -39,8 +39,8 @@ It empowers users to:
 
 **Clone the Repository:**
 
-```bash
 git clone https://github.com/your-username/Uvew.git
+
 ### Update Application Configuration:
 
 **Backend** (`application.properties`): Update `keycloak.serverUrl`, `keycloak.realm`, `keycloak.clientId`, and `keycloak.clientSecret` with your Keycloak server details and client credentials. Update AWS URL for bucket.
